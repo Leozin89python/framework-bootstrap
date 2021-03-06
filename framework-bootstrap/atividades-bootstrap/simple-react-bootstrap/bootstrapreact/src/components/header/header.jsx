@@ -12,7 +12,7 @@ export default class Header extends Component{
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav>
                             <Nav.Link href="/">Home</Nav.Link>
-                            <Nav.Link href="/table">table</Nav.Link>
+                            <Nav.Link href="/table">Table</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
             </Navbar>
