@@ -3,7 +3,7 @@ import './home.css'
 
 import Slider from './carrousel'
 
-import {Card} from 'react-bootstrap'
+import {Card,Form,Button} from 'react-bootstrap'
 
 export default class Home extends Component{
     render(){
@@ -53,7 +53,30 @@ export default class Home extends Component{
                     </Card>
                </div>
                 {/**component form */}
+                <div className="form-bootstrap">
+                    <Form>
+                        <Form.Group controlId="formBasicEmail">
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control type="email" placeholder="Enter your name." />
+                        </Form.Group>
 
+                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                            <Form.Label>Message</Form.Label>
+                            <Form.Control as="textarea" placeholder="Let your message for us." rows={3} />
+                            <Form.Text className="text-muted">
+                            We'll never share your name and
+                            text with anyone else.
+                            </Form.Text>
+                        </Form.Group>
+                        <Button variant="primary" type="submit">
+                            Submit
+                        </Button>
+                    </Form>
+                </div>
+
+                <div className="copy">
+                    <p>&copy; react-bootstrap and all rights reserved.</p>
+                </div>
             </div>
         )
     }
