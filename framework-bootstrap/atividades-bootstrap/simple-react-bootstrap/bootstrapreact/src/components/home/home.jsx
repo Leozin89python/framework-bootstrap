@@ -5,7 +5,49 @@ import Slider from './carrousel'
 
 import {Card,Form,Button} from 'react-bootstrap'
 
+import firebase from '../Db/db'
+
 export default class Home extends Component{
+    constructor(props){
+        super(props)
+
+        this.state = {
+            name:'',
+            msg:''
+        }
+
+        this.cadastro =  this.cadastro.bind(this)
+    }
+
+
+
+    cadastro = (e) => {
+        let cadastro = firebase.database()
+                               .ref('client');
+
+        let chave = cadastro.push().key;
+  
+        cadastro.child(chave).set({
+          name:this.state.name,
+          msg:this.state.msg
+        });
+  
+        this.limpar()
+        e.preventDefault();
+      }
+
+
+
+
+      limpar = () =>{
+          this.setState({
+            name:'',
+            msg:''
+          })
+      }
+
+
+
     render(){
         return(
             <div>
@@ -61,18 +103,27 @@ export default class Home extends Component{
                     <Form>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Name</Form.Label>
-                            <Form.Control type="email" placeholder="Enter your name." />
+                            <Form.Control type="text"  
+                                          placeholder="Enter your name."
+                                          value={this.state.name}
+                                          onChange={name => this.setState({name:name.target.value})}/>
                         </Form.Group>
 
                         <Form.Group controlId="exampleForm.ControlTextarea1">
                             <Form.Label>Message</Form.Label>
-                            <Form.Control as="textarea" placeholder="Let your message for us." rows={3} />
+                            <Form.Control as="textarea" 
+                                          placeholder="Let your message for us."
+                                         rows={3}
+                                         value={this.state.msg}
+                                         onChange={msg => this.setState({msg: msg.target.value})}/>
                             <Form.Text className="text-muted">
                             We'll never share your name and
                             text with anyone else.
                             </Form.Text>
                         </Form.Group>
-                        <Button variant="primary" type="submit">
+                        <Button variant="primary" 
+                                type="submit"
+                                onClick={this.cadastro}>
                             Submit
                         </Button>
                     </Form>

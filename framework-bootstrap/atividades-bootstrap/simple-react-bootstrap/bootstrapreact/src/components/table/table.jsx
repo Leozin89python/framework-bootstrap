@@ -8,34 +8,33 @@ export default class Table extends Component{
         super(props)
 
         this.state = {
-            name:'',
-            msg:''
+          valores: []
         }
 
-        firebase.database()
-                .ref('client')
-                .child('clients')
-                .on('value',(snapshot)=>{
-               
-            let state   = this.state
-            state.name  = snapshot.val().name
-            this.setState(state)
-        })
+    }
 
-        firebase.database()
-                .ref('client')
-                .child('clients')
-                .on('value',(snapshot)=>{
+    lista = () =>{
+        firebase.database().ref('client').on('value', (snapshot)    =>{
+            let valores = this.state
+            valores.valores = []
 
-            let state = this.state
-            state.msg = snapshot.val().msg
-            this.setState(state)
+            snapshot.forEach((dados)=>{
+              valores.valores.push({
+                    name:dados.val().name,
+                    msg:dados.val().msg
+                }) 
+            })
+            this.setState(valores)
         })
     }
 
-    render(){
-        const {name, msg} = this.state
+    componentDidMount = () =>{
+        this.lista()
+    }
 
+  
+    render(){
+        
         return(
             <div className="table-bootstrap">
                 <h1>Table</h1>
@@ -48,12 +47,22 @@ export default class Table extends Component{
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>{name}</th>
-                            <th> {msg}</th>
-                        </tr>
+                        {
+                            this.state.valores.map((e,index)=>{
+                                return(
+                                    <tr key={index}>
+                                        <th>{e.name}</th>
+                                        <th>{e.msg}</th>
+                                    </tr>
+                                )
+                            })
+                        }
                     </tbody>
                 </table>
+
+                <div className="copy-table">
+                    <p>&copy; react-bootstrap and all rights reserved.</p>
+                </div>
             </div>
         )
     }
