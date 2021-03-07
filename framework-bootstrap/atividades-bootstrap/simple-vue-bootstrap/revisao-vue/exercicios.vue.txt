@@ -1,9 +1,9 @@
+
 		IDE: https://jsfiddle.net/chrisvfritz/50wL7mdz/
-========================================================================================
+
 arquivo html:
 
-
-
+''_______________________________________________________________________________________
 <script src="https://unpkg.com/vue"></script>
 
 <div id="app">
@@ -12,26 +12,71 @@ arquivo html:
   <a v-bind:href="url">
       udemy
   </a>
+  <p v-text="texto"></p>
+  <input placeholder="escreva aqui" type="text" v-model:value="digito" />
+  <br/>
+  <textarea> 
+    {{digito}}
+  </textarea>
+  <br/>
+  <br/>
+  <br/>
+  
+  <input v-model="valor"/>
+  <div v-if="valor == 1">
+      <h5>{{verdade}}</h5>
+  </div>
+  
+  <div v-if="valor == 0">
+      <h5>{{falso}}</h5>
+  </div>
+  
+   <br/>
+   <br/>
+   <br/>
+    
+   <div v-for="contador in contagem">
+   <p>{{contador}}</p>
+   </div>
+   
+     <div v-for="(produto, index) in produtos">
+     <p>   {{index}}  -  
+           {{produto.item}} -
+           {{produto.preco}}
+     </p>
+   </div>
+   
 </div>
 
 
 
-
-
-=====================================================================================
+_______________________________________________________________________________________''
 arquivo js:
 
 
+''_____________________________________________________________________________________
 
 new Vue({
   el: '#app',
   data: {
     message: 'Hello Vue.js!',
     name:'Leonard',
-    url:'https://www.udemy.com'
+    url:'https://www.udemy.com',
+    texto:"Revisão Vue",
+    digito:'',
+    verdade:'true',
+    falso:'false',
+    valor:'',
+    contagem:[	1, 2, 3, '...' ],
+    produtos: [
+    {item:'arroz', preco:2.65},
+    {item:'açúcar', preco:1.79},
+    {item:'pão limiar', preco:4.25}]
   },
   methods:{
-  	some(){	
-     	 }
+  		some(){
+      		
+      }
   }
 })
+________________________________________________________________________________________''
