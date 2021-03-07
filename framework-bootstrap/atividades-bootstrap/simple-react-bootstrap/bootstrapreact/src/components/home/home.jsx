@@ -12,6 +12,8 @@ export default class Home extends Component{
                 {/**component Slider */}
                 <Slider />
                 <br />
+                <br />
+                <h1 className="product">Products</h1>
                <div className="card-bootstrap">
                 {/**component Cards */}   
                 <Card className="card1" border="primary" style={{ width: '19rem' }}>
@@ -52,8 +54,10 @@ export default class Home extends Component{
                         </Card.Body>
                     </Card>
                </div>
+               <hr/>
                 {/**component form */}
                 <div className="form-bootstrap">
+                    <h1>Formulary</h1>
                     <Form>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Name</Form.Label>
