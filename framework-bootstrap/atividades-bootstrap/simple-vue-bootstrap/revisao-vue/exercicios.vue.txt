@@ -1,9 +1,10 @@
 
 		IDE: https://jsfiddle.net/chrisvfritz/50wL7mdz/
-
+''_______________________________________________________________________________________
 arquivo html:
 
-''_______________________________________________________________________________________
+
+
 <script src="https://unpkg.com/vue"></script>
 
 <div id="app">
@@ -46,7 +47,39 @@ arquivo html:
      </p>
    </div>
    
+   <div>
+     <input  v-model="escrito"/>
+     <button @click="some()">press</button>
+   </div>
+     
+     <br />
+     
+    <!-- formulário versão 1 -->
+    <form>
+     <input  v-model="valorDigitado"/>
+     <button @click="formulario('name', $event)">press</button>
+   </form>
+     
+      <br />
+   
+      <!-- formulário versão 2 -->
+    <form v-on:submit="formulario2('name', $event)">
+     <input  v-model="valorDigitado2"/>
+     <button type="submit">press</button>
+   </form>
+   
+     <br />
+       <br />
+     
+       
+        <!-- formulário versão 3 -->
+      <form v-on:submit.prevent="formulario3('name', $event)">
+     <input  v-model="valorDigitado3"/>
+   </form>
+   
 </div>
+
+
 
 
 
@@ -67,6 +100,10 @@ new Vue({
     verdade:'true',
     falso:'false',
     valor:'',
+    valorDigitado:'',
+    valorDigitado2:'',
+     valorDigitado3:'',
+    escrito:'',
     contagem:[	1, 2, 3, '...' ],
     produtos: [
     {item:'arroz', preco:2.65},
@@ -75,7 +112,21 @@ new Vue({
   },
   methods:{
   		some(){
-      		
+      		console.log(this.escrito)
+      }, 
+      formulario(nome,event){
+      	this.valorDigitado = nome
+        event.preventDefault()
+        console.log(event)
+      },
+      formulario2(nome,event){
+      	this.valorDigitado2 = nome
+        event.preventDefault()
+        console.log(this.valorDigitado2)
+      },
+      formulario3(nome,event){
+      	this.valorDigitado3 = nome
+        console.log(this.valorDigitado3)
       }
   }
 })
