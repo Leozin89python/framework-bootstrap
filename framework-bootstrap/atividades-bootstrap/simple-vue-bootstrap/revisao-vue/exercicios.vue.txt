@@ -1,4 +1,3 @@
-
 		IDE: https://jsfiddle.net/chrisvfritz/50wL7mdz/
 ''_______________________________________________________________________________________
 arquivo html:
@@ -77,6 +76,14 @@ arquivo html:
      <input  v-model="valorDigitado3"/>
    </form>
    
+   <br />
+   
+   
+     <!-- formulário versão 4 -->
+   <!-- o elemento KEYUP não depende do elemento .enter (este é um valor incremental) -->
+   <input  v-model="valorDigitado4"
+   v-on:keyup.enter="formulario4('name', $event)"/>
+   
 </div>
 
 
@@ -103,6 +110,7 @@ new Vue({
     valorDigitado:'',
     valorDigitado2:'',
      valorDigitado3:'',
+     valorDigitado4:'',
     escrito:'',
     contagem:[	1, 2, 3, '...' ],
     produtos: [
@@ -122,11 +130,15 @@ new Vue({
       formulario2(nome,event){
       	this.valorDigitado2 = nome
         event.preventDefault()
-        console.log(this.valorDigitado2)
+        console.log(this.valorDigitado2 + '2')
       },
       formulario3(nome,event){
       	this.valorDigitado3 = nome
-        console.log(this.valorDigitado3)
+        console.log(this.valorDigitado3 + '3')
+      },
+      formulario4(nome,event){
+      	this.valorDigitado4 = nome
+        console.log(this.valorDigitado4 + '4')
       }
   }
 })
